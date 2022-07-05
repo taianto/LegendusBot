@@ -35,4 +35,3 @@ client.on('messageCreate', message => {
 }
 );
 
-client.login('OTkzMjM1ODY5MDQ3NzE3ODk4.GY0INY.MlTwysjPYcEIh2ShTN4YsHWMF3vB2MFE4UBReA');
