@@ -34,4 +34,3 @@ client.on('messageCreate', message => {
     }
 }
 );
-
