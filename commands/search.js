@@ -27,6 +27,10 @@ module.exports = {
             var output = null;
             if (attribute === 'wr') {
                 const [wr] = await page.$x('//*[@id="content-container"]/div[2]/div[2]/div[1]/div[2]/div[1]/div[2]/strong');
+                if (wr === undefined) {
+                    message.channel.send('Error: Player not found');
+                    return;
+                }
                 const wrText = await wr.getProperty('textContent');
                 const wrRawText = await wrText.jsonValue();
 
@@ -39,6 +43,10 @@ module.exports = {
             }
             else if (attribute === 'kda') {
                 const [kdr] = await page.$x('//*[@id="content-container"]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]');
+                if (kdr === undefined) {
+                    message.channel.send('Error: Player not found');
+                    return;
+                }
                 const kdrText = await kdr.getProperty('textContent');
                 const kdrRawText = await kdrText.jsonValue();
 
@@ -49,10 +57,13 @@ module.exports = {
                 output = 'KDR: ' + kdrRawText
                     + '\n' + kdaRawText;
             }
+            else {
+                message.channel.send('Please use the correct arguments for this command:'
+                + '\n!search (Player Name) (wr/kda)');
+                return;
+            }
             //console.log(output);
             message.channel.send(output);
         }
-
-
     }
 }
